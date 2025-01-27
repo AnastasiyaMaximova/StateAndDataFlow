@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Hi, \(loginViewVM.name)")
+            Text("Hi, \(loginViewVM.name)!")
                 .font(.title)
                 .padding(.top, 100)
             

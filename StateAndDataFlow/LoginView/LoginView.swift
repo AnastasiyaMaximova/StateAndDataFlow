@@ -12,11 +12,19 @@ struct LoginView: View {
     
     var body: some View {
         VStack {
-            TextField("Enter your name", text: $loginViewVM.name)
-                .multilineTextAlignment(.center)
+            HStack {
+                TextField("Enter your name", text: $loginViewVM.name)
+                    .multilineTextAlignment(.center)
+                Text(loginViewVM.name.count.description)
+                    .padding(.trailing, 16)
+                    .foregroundStyle(loginViewVM.nameSymbolCount ? .blue : .red)
+                
+            }
             Button(action: login) {
                 Label("OK", systemImage: "checkmark.circle")
+                    .foregroundStyle(loginViewVM.nameSymbolCount ? .blue : .red)
             }
+            .disabled(!loginViewVM.nameSymbolCount)
         }
     }
     

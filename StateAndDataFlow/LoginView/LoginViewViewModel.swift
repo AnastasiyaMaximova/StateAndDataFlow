@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import Combine
 
 final class LoginViewViewModel: ObservableObject {
-    var name = ""
+ 
+    @Published var name = ""
     @Published var isLoggedIn = false
+    var nameSymbolCount: Bool {
+        name.count <= 3 ? false : true
+    }
 }
