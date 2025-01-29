@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import Combine
+import Observation
 
-final class ContentViewViewModel: ObservableObject {
-    let objectWillChange = ObservableObjectPublisher()
+@Observable
+final class ContentViewViewModel {
     var counter = 3
     var buttonTitle = "Start"
     var logOutButtonTitle = "Log out"
@@ -26,7 +26,6 @@ final class ContentViewViewModel: ObservableObject {
                 repeats: true
             )
         }
-        
         buttonDidTapped()
     }
     
@@ -37,8 +36,6 @@ final class ContentViewViewModel: ObservableObject {
             killTimer()
             buttonTitle = "Reset"
         }
-        
-        objectWillChange.send()
     }
     
     private func killTimer() {
@@ -53,7 +50,5 @@ final class ContentViewViewModel: ObservableObject {
         } else {
             buttonTitle = "Wait..."
         }
-        
-        objectWillChange.send()
     }
 }

@@ -13,25 +13,19 @@ struct LoginView: View {
     var body: some View {
         VStack {
             HStack {
-                TextField("Enter your name", text: $loginViewVM.name)
+        
+                TextField("Enter your name", text: $loginViewVM.inputName)
                     .multilineTextAlignment(.center)
-                Text(loginViewVM.name.count.description)
-                    .padding(.trailing, 16)
+                Text(loginViewVM.inputName.count.description)
                     .foregroundStyle(loginViewVM.nameSymbolCount ? .blue : .red)
-                
             }
-            Button(action: login) {
+            Button(action: loginViewVM.login) {
                 Label("OK", systemImage: "checkmark.circle")
-                    .foregroundStyle(loginViewVM.nameSymbolCount ? .blue : .red)
             }
             .disabled(!loginViewVM.nameSymbolCount)
+            .opacity(loginViewVM.nameSymbolCount ? 1 : 0)
         }
-    }
-    
-    private func login() {
-        if !loginViewVM.name.isEmpty {
-            loginViewVM.isLoggedIn.toggle()
-        }
+        .padding()
     }
 }
 

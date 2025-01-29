@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject private var contentViewVM: ContentViewViewModel
     @EnvironmentObject private var loginViewVM: LoginViewViewModel
+    private var contentViewVM =  ContentViewViewModel()
     
     var body: some View {
         VStack {
-            Text("Hi, \(loginViewVM.name)!")
+            Text("Hi, \(loginViewVM.inputName)!")
                 .font(.title)
                 .padding(.top, 100)
             
@@ -43,28 +43,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(ContentViewViewModel())
         .environmentObject(LoginViewViewModel())
-}
-
-struct ButtonView: View {
-    @ObservedObject var contentViewVM: ContentViewViewModel
-    var title: String
-    var action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Text(title)
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundStyle(.white)
-        }
-        .frame(width: 200, height: 60)
-        .background(title == "Log out" ? .blue : .red)
-        .clipShape(.rect(cornerRadius: 20))
-        .overlay (
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(.black, lineWidth: 4)
-        )
-    }
 }

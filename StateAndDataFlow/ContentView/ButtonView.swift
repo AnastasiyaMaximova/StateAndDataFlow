@@ -8,11 +8,31 @@
 import SwiftUI
 
 struct ButtonView: View {
+    var contentViewVM: ContentViewViewModel
+    var title: String
+    var action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+            Text(title)
+                .font(.title)
+                .fontWeight(.bold)
+                .foregroundStyle(.white)
+        }
+        .frame(width: 200, height: 60)
+        .background(title == "Log out" ? .blue : .red)
+        .clipShape(.rect(cornerRadius: 20))
+        .overlay (
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(.black, lineWidth: 4)
+        )
     }
 }
 
-#Preview {
-    ButtonView()
+struct ButtonView_Previews: PreviewProvider {
+    static var previews: some View {
+        ZStack {
+            ButtonView(contentViewVM: ContentViewViewModel(), title: "Button", action: {})
+        }
+    }
 }

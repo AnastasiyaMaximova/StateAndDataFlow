@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct User: Codable {
+    var name = ""
+    var isLoggedIn = false
+}
